@@ -35,10 +35,10 @@ const userSchema = (sequelize, DataTypes) => {
   };
 
   // Bearer AUTH: Validating a token
-  model.authenticateToken = async function (token) {
+  model.authenticateWithToken = async function (token) {
     try {
       const parsedToken = jwt.verify(token, process.env.SECRET);
-      const user = this.findOne({ username: parsedToken.username });
+      const user = await this.findOne({ username: parsedToken.username });
       if (user) {
         return user;
       }
