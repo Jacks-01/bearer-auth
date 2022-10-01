@@ -14,7 +14,7 @@ const userSchema = (sequelize, DataTypes) => {
         return jwt.sign({ username: this.username }, process.env.SECRET);
       },
       set() {
-        return jwt.sign({ username: this.username }, process.env.SECRET, { expiresIn: '15m' })
+        return jwt.sign({ username: this.username }, process.env.SECRET, { expiresIn: '15m' });
       },
     },
   });
