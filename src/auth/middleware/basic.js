@@ -5,9 +5,9 @@ const { user } = require('../models/index.js');
 
 module.exports = async (req, res, next) => {
 
-  if (!req.headers.authorization) { return _authError(); }
+  if (!req.headers.authorization) { next('No Auth String'); }
 
-  let basic = req.headers.authorization;
+  let basic = req.headers.authorization.split(' ').pop();
   let [username, pass] = base64.decode(basic).split(':');
 
   try {
