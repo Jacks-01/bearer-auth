@@ -32,8 +32,9 @@ async function handleSignin(req, res, next) {
 async function handleGetUsers(req, res, next) {
   try {
     const userRecords = await users.findAll({});
-    const list = users.map((user) => users.username);
+    const list = userRecords.map((user) => users.username);
     res.status(200).json(list);
+    next();
   } catch (e) {
     console.error(e);
     next(e);
@@ -41,7 +42,7 @@ async function handleGetUsers(req, res, next) {
 }
 
 function handleSecret(req, res, next) {
-  res.status(200).text('Welcome to the secret area!');
+  res.status(200).send('Welcome to the secret area!');
 }
 
 module.exports = {
