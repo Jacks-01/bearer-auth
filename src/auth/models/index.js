@@ -8,13 +8,14 @@ const DATABASE_URL = process.env.NODE_ENV === 'test' ? 'sqlite::memory' : 'sqlit
 
 console.log(DATABASE_URL);
 const DATABASE_CONFIG = process.env.NODE_ENV === 'production' ? {
+  logging: false,
   dialectOptions: {
     ssl: {
       require: true,
       rejectUnauthorized: false,
     },
   },
-} : {};
+} : { logging: false };
 
 const sequelize = new Sequelize(DATABASE_URL, DATABASE_CONFIG);
 
